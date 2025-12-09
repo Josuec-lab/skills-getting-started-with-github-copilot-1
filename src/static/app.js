@@ -21,45 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        // Main content
-        const title = document.createElement("h4");
-        title.textContent = name;
-        activityCard.appendChild(title);
-
-        const desc = document.createElement("p");
-        desc.textContent = details.description;
-        activityCard.appendChild(desc);
-
-        const sched = document.createElement("p");
-        sched.innerHTML = `<strong>Schedule:</strong> ${details.schedule}`;
-        activityCard.appendChild(sched);
-
-        const avail = document.createElement("p");
-        avail.innerHTML = `<strong>Availability:</strong> ${spotsLeft} spots left`;
-        activityCard.appendChild(avail);
-
-        // Participants title
-        const participantsTitle = document.createElement("p");
-        participantsTitle.innerHTML = "<strong>Participants:</strong>";
-        activityCard.appendChild(participantsTitle);
-
-        // Participants list or friendly message
-        if (!details.participants || details.participants.length === 0) {
-          const none = document.createElement("p");
-          none.className = "no-participants";
-          none.textContent = "No one signed up yet — be the first!";
-          activityCard.appendChild(none);
-        } else {
-          const ul = document.createElement("ul");
-          ul.className = "participants-list";
-          details.participants.forEach((p) => {
-            const li = document.createElement("li");
-            li.className = "participant";
-            li.textContent = p;
-            ul.appendChild(li);
-          });
-          activityCard.appendChild(ul);
-        }
+        activityCard.innerHTML = `
+          <h4>${name}</h4>
+          <p>${details.description}</p>
+          <p><strong>Schedule:</strong> ${details.schedule}</p>
+          <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+        `;
 
         activitiesList.appendChild(activityCard);
 
